@@ -1,56 +1,68 @@
 import { makeStyles, styled } from '@material-ui/styles';
-import Box from '@mui/material/Box';
-import { blue } from '@mui/material/colors';
-import { borderRadius, minWidth } from '@mui/system';
+import { Typography } from '@mui/material';
+import { convertLength } from '@mui/material/styles/cssUtils';
 
-export const CircularBox = styled(Box)({
-    position: 'relative',
-    display: 'flex',
-    marginTop: '20%',
-    justifyContent: 'center',
-    fontSize: '30px',
-})
 
-export const ContainerBox = styled(Box)({
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    position: 'absolute',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '100%',
-    fontSize: '30px',
 
-   '& .css-ol7wxs-MuiTypography-root' : {
-    fontSize: '30px',
-   }
-})
 
 export const useStyles = makeStyles({
 
-"@media(max-width: 400px)":{
-  link: {
-    backgroundColor: 'black',
-    color: 'white',
-    padding : '20px',
-    position: 'fixed',
-    bottom: '25%',
-    right: '10%',
-    textDecoration: 'none',
-    borderRadius: '30px',
-    fontSize: '20px',
-  }
-},
 
+  "@media(max-width: 400px)": {
 
-"@media(min-width: 401px) and (max-width: 500px)":{
-    link: {
+    __container:{
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+
+    __link: {
       backgroundColor: 'black',
       color: 'white',
-      padding : '20px',
+      padding: '20px',
+      position: 'fixed',
+      bottom: '25%',
+      right: '10%',
+      textDecoration: 'none',
+      borderRadius: '30px',
+      fontSize: '20px',
+    }
+  },
+
+  __listaFilmes: {
+    width: '100%',
+    margin: '14px auto',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    
+    '& article': {
+      
+      padding: '15px',
+      borderRadius: '4px',
+    },
+
+    '& img' :{
+  
+      maxWidth: '50%',
+     
+      
+    },
+
+    '& h6' :{
+      marginBottom: '14px',
+      display: 'block',
+    },
+ },
+
+
+  "@media(min-width: 401px) and (max-width: 500px)": {
+    __link: {
+      backgroundColor: 'black',
+      color: 'white',
+      padding: '20px',
       position: 'fixed',
       bottom: '20%',
       right: '10%',
@@ -61,11 +73,11 @@ export const useStyles = makeStyles({
   },
 
 
-  "@media(min-width: 501px)":{
-    link: {
+  "@media(min-width: 501px)": {
+    __link: {
       backgroundColor: 'black',
       color: 'white',
-      padding : '20px',
+      padding: '20px',
       position: 'fixed',
       bottom: '15%',
       right: '10%',
@@ -74,12 +86,56 @@ export const useStyles = makeStyles({
       fontSize: '30px',
     },
 
-    container: {
-        marginTop: '5%',
-        width: '100%',
-        textAlign: 'center',
-    }
+    __container: {
+      marginTop: '5%',
+      width: '100%',
+      textAlign: 'center'
+    },
+ 
+
+__listaFilmes: {
+  maxWidth: '800px',
+  margin: '14px auto',
+
+  '& article': {
+    width: '100%',
+    padding: '15px',
+    borderRadius: '4px',
+    backgroundColor: 'lightGray',
+    margin: '10px',
+  },
+
+  '& img' :{
+
+    width: '100%',
+   maxWidth: '100%',
+   maxHeight: '340px',
+   objectFit: 'cover',
+   display: 'block',
+   borderRadius: '8px 8px 0 0',
+   
+    
+  },
+
+  '& h6' :{
+    marginBottom: '14px',
+    display: 'block',
+  },
+
+  '& a':{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '10px 0',
+    fontSize: '18px',
+    backgroundColor: '#8B0000',
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    color:'#FFF',
+    borderRadius: '0 0 8px 8px',
+
   }
+},
 
-
+  },
 })
