@@ -24,7 +24,7 @@ function Home() {
             setLoading(false);
         }, 3000)
         const timer = setInterval(() => {
-            setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+            setProgress((prevProgress) => prevProgress >= 100 ? 10 : prevProgress + 10);
         }, 500);
         return () => {
             clearInterval(timer);

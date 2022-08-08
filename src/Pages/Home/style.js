@@ -60,7 +60,6 @@ export const useStyles = makeStyles({
     },
   },
 
-
   "@media(min-width: 300px) and (max-width: 999px)": {
     __link: {
       backgroundColor: 'black',
@@ -114,11 +113,13 @@ export const useStyles = makeStyles({
         textTransform: 'uppercase',
         color: '#FFF',
         borderRadius: '0 0 8px 8px',
-      }
+      },
     },
 
   },
 
+
+  
 
   "@media(min-width: 1000px)": {
     __link: {
@@ -174,8 +175,9 @@ export const useStyles = makeStyles({
         color: '#FFF',
         borderRadius: '0 0 8px 8px',
 
-      }
+      },
     },
 
   },
+
 })
