@@ -1,19 +1,13 @@
-import { Box, Button, createTheme, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import CircularProgressWithLabel from '../../components/CircularProgress/CircularProgress';
 import api from '../../services/api'
-import Error from '../Error';
+
 import { Container, useStyles } from './style';
 
 
 function Filme() {
-
-    const theme = createTheme({
-        palette: {
-            mode: 'dark',
-        },
-    });
 
     const { id } = useParams();
     const [filme, setFilme] = useState({});
@@ -41,11 +35,8 @@ function Filme() {
         }, 250);
         return () => {
             clearInterval(timer);
-
         };
     }
-
-
 
     useEffect(() => {
         async function loadFilme() {
@@ -71,33 +62,51 @@ function Filme() {
 
     }, [id, navigate])
 
+    function saveFilme(){
+       const MyList = localStorage.getItem("@cinepipoca");
+
+       let SavedMovies = JSON.parse(MyList) || [];
+
+       const hasMovie = SavedMovies.some(( filmesSalvo) => filmesSalvo.id === filme.id)
+        if(hasMovie){
+            alert("ESSE FILME JÁ ESTÁ NA LISTA");
+            return;
+        }
+        else{
+        SavedMovies.push(filme)
+        localStorage.setItem("@cinepipoca", JSON.stringify(SavedMovies));
+        alert("FILME SALVO COM SUCESSO");
+        return;
+        }       
+    }
+
+  
+
     return (
         <>
 
             {loading ? <CircularProgressWithLabel value={progress} /> : (
 
                 <Container>
-                    <ThemeProvider theme={theme}>
-                        <Typography variant='h2'>{filme.title}</Typography>
-                        <img src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`} alt={filme.title} />
-                        <Typography variant='h4'>Sinopse</Typography>
-                        <Box component="span">{filme.overview}</Box>
+                    <Typography variant='h2'>{filme.title}</Typography>
+                    <img src={`https://image.tmdb.org/t/p/original/${filme.backdrop_path}`} alt={filme.title} />
+                    <Typography variant='h4'>Sinopse</Typography>
+                    <Box component="span">{filme.overview}</Box>
 
-                        <Typography variant='h6'>Avaliação:  {(filme.vote_average.toFixed(1))} / 10</Typography>
-                        <div className={styles.__area_buttons}>
-                            <Button>Salvar</Button>
-                            <Button
-                                rel="external"
-                                href={`https://youtube.com/results?search_query=${filme.title} Trailer`}
-                                target="blank"
-                                style={{ backgroundColor: '#8B0000', color: '#FFF' }}
-                            >Trailer</Button>
-                        </div>
-                    </ThemeProvider>
+                    <Typography variant='h6'>Avaliação:  {(filme.vote_average.toFixed(1))} / 10</Typography>
+                    <div className={styles.__area_buttons}>
+                        <Button
+                        onClick={saveFilme}
+                        >Salvar</Button>
+                        <Button
+                            rel="external"
+                            href={`https://youtube.com/results?search_query=${filme.title} Trailer`}
+                            target="blank"
+                            style={{ backgroundColor: '#8B0000', color: '#FFF' }}
+                        >Trailer</Button>
+                    </div>
                 </Container>
-
             )
-
             }
             {topo > 100 &&
                 <a className={styles.__link} href='#'>&#9650; </a>
