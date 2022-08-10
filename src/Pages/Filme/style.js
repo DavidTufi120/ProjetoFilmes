@@ -1,16 +1,13 @@
 import styled from '@emotion/styled';
 import { makeStyles } from '@material-ui/styles';
-import { Box, createMuiTheme } from '@mui/material';
-
-
 
 export const Container = styled.div`
       margin: 0 auto;
-    
       flex-direction: column;
       display: flex;
       max-width: 800px;
       padding: 24px;
+     
       
       img{
       width: 800px;

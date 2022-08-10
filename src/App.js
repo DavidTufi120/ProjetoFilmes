@@ -1,11 +1,15 @@
 import RoutesApp from "./Routes/routes";
 
-
 function App() {
+
   return (
+
     <div>
-        <RoutesApp/>
+      <RoutesApp />
+
     </div>
+
+
   );
 }
 
