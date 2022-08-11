@@ -28,8 +28,6 @@ export const Container = styled.div`
     
 `;
 
-
-
 export const useStyles = makeStyles({
   
   __link: {
@@ -61,15 +59,5 @@ export const useStyles = makeStyles({
         backgroundColor: "#8B0000"
       }
     },
-
-
-    
-
-
-
-   },
-
-
- 
-  
+ },
 })
