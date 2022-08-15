@@ -5,6 +5,7 @@ import CircularProgressWithLabel from "../../components/CircularProgress/Circula
 import SaveIcon from "@mui/icons-material/Save";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import api from "../../services/api";
+import { toast } from "react-toastify";
 
 import { Container, useStyles } from "./style";
 
@@ -71,12 +72,12 @@ function Filme() {
       (filmesSalvo) => filmesSalvo.id === filme.id
     );
     if (hasMovie) {
-      alert("ESSE FILME JÁ ESTÁ NA LISTA");
+      toast.warn("Esse filme já está na sua lista");
       return;
     } else {
       SavedMovies.push(filme);
       localStorage.setItem("@cinepipoca", JSON.stringify(SavedMovies));
-      alert("FILME SALVO COM SUCESSO");
+      toast.success("Filme salvo com sucesso");
       return;
     }
   }

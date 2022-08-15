@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import InfoIcon from "@mui/icons-material/Info";
 import { Container } from "./style";
+import { toast } from "react-toastify";
 
 function Favorites() {
   const [filmes, setFilmes] = useState([]);
@@ -13,6 +14,7 @@ function Favorites() {
     });
     setFilmes(MovieFilter);
     localStorage.setItem("@cinepipoca", JSON.stringify(MovieFilter));
+    toast.success("Filme removido com sucesso");
   }
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function Favorites() {
               <Typography variant="h4">{item.title}</Typography>
               <div>
                 <Button href={`/filme/${item.id}`} endIcon={<InfoIcon />}>
-                  Ver Detalhes
+                  Detalhes
                 </Button>
                 <Button
                   onClick={() => handleDeleteMovie(item.id)}
