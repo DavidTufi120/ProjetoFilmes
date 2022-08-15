@@ -6,16 +6,16 @@ import CircularProgressWithLabel from "../../components/CircularProgress/Circula
 import api from "./../../services/api";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
-//URL da Api: /movie/now_playing?api_key=e7106c79a96105a90f0789f2be00d9de
+import AddPagination from "../../components/Pagination/AddPagination";
 
 function Home() {
   const styles = useStyles();
-
+  const [filmes, setFilmes] = useState([]);
+  const [page, setPage] = useState(3);
+  const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [topo, setTopo] = useState(0);
-  const [filmes, setFilmes] = useState([]);
 
   function setTimer() {
     setTimeout(() => {
@@ -32,15 +32,16 @@ function Home() {
   }
 
   async function loadFilmes() {
-    const response = await api.get("movie/now_playing", {
+    const { data } = await api.get("movie/now_playing", {
       params: {
         api_key: "e7106c79a96105a90f0789f2be00d9de",
         language: "pt-BR",
-        page: 1,
+        page: page,
       },
     });
-    setFilmes(response.data.results.slice(0, 10));
+    setFilmes(data?.results);
     setTimer();
+    setPageNumber(data?.total_pages);
   }
   function getPageTopoAfterScroll() {
     setTopo(window.scrollY);
@@ -50,7 +51,7 @@ function Home() {
 
   useEffect(() => {
     loadFilmes();
-  }, []);
+  }, [page]);
   return (
     <>
       {loading ? (
@@ -73,6 +74,7 @@ function Home() {
                 </article>
               );
             })}
+            <AddPagination setPage={setPage} pageNumber={pageNumber} />
           </div>
 
           {topo > 100 && (
