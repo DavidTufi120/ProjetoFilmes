@@ -6,11 +6,11 @@ export const Container = styled.div`
 
   @media (max-width: 400px) {
     display: flex;
-    margin-top: 5%;
+    margin: 5% 0 15% 0;
   }
 
   @media (min-width: 501px) {
-    margin-top: 5%;
+    margin: 5% 0;
     width: 100%;
     text-align: center;
   }

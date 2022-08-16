@@ -11,7 +11,7 @@ import AddPagination from "../../components/Pagination/AddPagination";
 function Home() {
   const styles = useStyles();
   const [filmes, setFilmes] = useState([]);
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -31,7 +31,7 @@ function Home() {
     };
   }
 
-  async function loadFilmes() {
+  const loadFilmes = async () => {
     const { data } = await api.get("movie/now_playing", {
       params: {
         api_key: "e7106c79a96105a90f0789f2be00d9de",
@@ -42,7 +42,7 @@ function Home() {
     setFilmes(data?.results);
     setTimer();
     setPageNumber(data?.total_pages);
-  }
+  };
   function getPageTopoAfterScroll() {
     setTopo(window.scrollY);
   }
@@ -74,7 +74,11 @@ function Home() {
                 </article>
               );
             })}
-            <AddPagination setPage={setPage} pageNumber={pageNumber} />
+            <AddPagination
+              setPage={setPage}
+              pageNumber={pageNumber}
+              page={page}
+            />
           </div>
 
           {topo > 100 && (

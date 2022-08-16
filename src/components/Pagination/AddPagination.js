@@ -2,29 +2,25 @@ import React from "react";
 import Pagination from "@mui/material/Pagination";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme, useStyles } from "./style";
-import { Stack } from "@mui/material";
 
-const AddPagination = ({ setPage, pageNumber }) => {
+const AddPagination = ({ setPage, pageNumber, page }) => {
   const classes = useStyles();
 
-  const handleChange = (page) => {
+  const handleChange = async (page) => {
     setPage(page);
     window.scroll(0, 0);
   };
-
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <Stack spacing={8}>
-          <Pagination
-            onChange={(e) => handleChange(e.target.textContent)}
-            className={classes.__pagination}
-            variant="outlined"
-            classes={{ root: classes.root }}
-            color="primary"
-            count={pageNumber}
-          />
-        </Stack>
+        <Pagination
+          onChange={(e, page) => handleChange(page)}
+          className={classes.__pagination}
+          variant="outlined"
+          classes={{ root: classes.root }}
+          color="primary"
+          count={pageNumber}
+        />
       </div>
     </ThemeProvider>
   );

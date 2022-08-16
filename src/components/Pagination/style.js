@@ -19,15 +19,35 @@ export const useStyles = makeStyles(() => ({
     },
   },
 
-  __pagination: {
-    display: "flex",
-    justifyContent: "center",
-    bottom: "0",
-    marginTop: "10%",
-    position: "fixed",
-    width: "100%",
-    left: "0",
-    padding: "20px",
-    backgroundColor: "#000",
+  "@media(max-width:399px)": {
+    root: {
+      "& .MuiPaginationItem-root": {
+        fontSize: "15px",
+      },
+    },
+
+    __pagination: {
+      display: "flex",
+      justifyContent: "center",
+      bottom: "0",
+      padding: "10px 0",
+      position: "fixed",
+      width: "100%",
+      left: "0",
+      backgroundColor: "#000",
+    },
+  },
+
+  "@media(min-width:400px)": {
+    __pagination: {
+      display: "flex",
+      justifyContent: "center",
+      bottom: "0",
+      position: "fixed",
+      width: "100%",
+      left: "0",
+      padding: "20px",
+      backgroundColor: "#000",
+    },
   },
 }));
