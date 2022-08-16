@@ -1,6 +1,9 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+pt-BR
+Se desejar visualizar sem execucação de script, basta acessar https://cinepipoca.netlify.app/
+
+en
+If you want to view without script execution, just access https://cinepipoca.netlify.app/
 
 ## Available Scripts
 
